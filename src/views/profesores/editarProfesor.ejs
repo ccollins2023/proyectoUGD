@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Profesor</title>
+</head>
+<body>
+    <h1>Editar Profesor</h1>
+    <form action="/profesores/editar/<%= profesor.id %>?_method=PUT" method="POST">
+        <label for="dni">DNI:</label>
+        <input type="text" id="dni" name="dni" value="<%= profesor.dni %>" required>
+        
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" value="<%= profesor.nombre %>" required>
+        
+        <label for="apellido">Apellido:</label>
+        <input type="text" id="apellido" name="apellido" value="<%= profesor.apellido %>" required>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="<%= profesor.email %>" required>
+        
+        <label for="profesion">Profesión:</label>
+        <input type="text" id="profesion" name="profesion" value="<%= profesor.profesion %>" required>
+        
+        <label for="telefono">Teléfono:</label>
+        <input type="text" id="telefono" name="telefono" value="<%= profesor.telefono %>" required>
+        
+        <button type="submit">Guardar Cambios</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar Estudiantes</title>
+</head>
+<body>
+    <h1>Listado de Estudiantes</h1>
+    <a href="/estudiantes/insertar">Agregar nuevo estudiante</a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>DNI</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Email</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% estudiantes.forEach(estudiante => { %>
+                <tr>
+                    <td><%= estudiante.id %></td>
+                    <td><%= estudiante.dni %></td>
+                    <td><%= estudiante.nombre %></td>
+                    <td><%= estudiante.apellido %></td>
+                    <td><%= estudiante.email %></td>
+                    <td>
+                        <a href="/estudiantes/editar/<%= estudiante.id %>">Editar</a>
+                        <a href="/estudiantes/eliminar/<%= estudiante.id %>?_method=DELETE">Eliminar</a>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</body>
+</html>

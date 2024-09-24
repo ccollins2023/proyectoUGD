@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Curso</title>
+</head>
+<body>
+    <h1>Editar Curso</h1>
+    <form action="/cursos/editar/<%= curso.id %>?_method=PUT" method="POST">
+        <label for="nombre">Nombre del Curso:</label>
+        <input type="text" id="nombre" name="nombre" value="<%= curso.nombre %>" required>
+        
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" name="descripcion" required><%= curso.descripcion %></textarea>
+        
+        <label for="profesor">Profesor:</label>
+        <select id="profesor" name="profesor" required>
+            <% profesores.forEach(profesor => { %>
+                <option value="<%= profesor.id %>" <%= profesor.id === curso.profesor.id ? 'selected' : '' %>><%= profesor.nombre %></option>
+            <% }); %>
+        </select>
+        
+        <button type="submit">Guardar Cambios</button>
+    </form>
+</body>
+</html>
