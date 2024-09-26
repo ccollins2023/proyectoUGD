@@ -63,13 +63,14 @@ class ProfesorController {
         }
 
         if (Object.keys(errores).length > 0) {
-            return res.status(400).json({ errores });
+            return res.render('insertarProfesor', { errores, dni, nombre, apellido, email, profesion, telefono });
         }
 
         try {
             const profesor = Profesor.create({ dni, nombre, apellido, email, profesion, telefono });
             await Profesor.save(profesor);
-            res.status(201).json(profesor);
+          res.redirect('/profesores/listar')
+           
         } catch (err) {
             console.error(err);
             res.status(500).send("Error al insertar el profesor");
@@ -92,8 +93,8 @@ class ProfesorController {
     }
 
     async modificar(req: Request, res: Response) {
-        const { id } = req.params;
-        const { dni, nombre, apellido, email, profesion, telefono } = req.body;
+      
+        const { id,dni, nombre, apellido, email, profesion, telefono } = req.body;
         const errores: { [key: string]: string } = {};
 
         if (!dni || !/^\d{8}$/.test(dni)) {
@@ -126,17 +127,45 @@ class ProfesorController {
         }
 
         if (Object.keys(errores).length > 0) {
-            return res.status(400).json({ errores });
+            const profesor = await Profesor.findOneBy({ id: Number(id) });
+            return res.render('editarProfesor', { errores, profesor });
         }
 
         try {
             await Profesor.update(id, { dni, nombre, apellido, email, profesion, telefono });
-            res.status(200).json({ mensaje: "Profesor actualizado exitosamente" });
+            res.redirect('/profesores/listar')
         } catch (err) {
             console.error(err);
             res.status(500).send("Error al modificar el profesor");
         }
     }
+    async listar(req: Request, res: Response) {
+        try {
+            const profesores = await Profesor.find();
+            res.render('listarProfesores', { profesores });
+        } catch (err) {
+            if (err instanceof Error) {
+                res.status(500).send(err.message);
+            }
+        }
+    }
+    async editar(req: Request, res: Response) {
+        const { id } = req.params;
+        try {
+            const profesor = await Profesor.findOneBy({ id: Number(id) });
+            if (!profesor) {
+                return res.status(404).send('Estudiante no encontrado');
+            }
+            res.render('editarProfesor', { profesor });
+        } catch (err) {
+            if (err instanceof Error) {
+                res.status(500).send(err.message);
+            }
+        }
+    }
 }
+
+
+
 
 export default new ProfesorController();

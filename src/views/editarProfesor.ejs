@@ -7,8 +7,22 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
+    <header>
+        <h1>Universidad</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="/estudiantes/listar">Gestionar Estudiantes</a></li>
+            <li><a href="/profesores/listar">Gestionar Profesores</a></li>
+            <li><a href="/cursos/listar">Gestionar Cursos</a></li>
+            <li><a href="/inscripciones/listar">Gestionar Inscripciones</a></li>
+        </ul>
+    </nav>
     <h1>Editar Profesor</h1>
-    <form action="/profesores/editar/<%= profesor.id %>?_method=PUT" method="POST">
+
+
+    <form action="/profesores/modificar?_method=PUT"method="POST">
+        <input type="hidden" name="id" value="<%= profesor.id %>">
         <label for="dni">DNI:</label>
         <input type="text" id="dni" name="dni" value="<%= profesor.dni %>" required>
         

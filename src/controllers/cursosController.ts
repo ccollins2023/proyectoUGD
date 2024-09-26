@@ -1,21 +1,39 @@
 import { Request, Response } from 'express';
 import { Curso } from '../models/cursoModel';
+import { Profesor } from '../models/profesorModel';
 
-const cursosController = {
+class cursosController  {
 
-    insertar: async (req: Request, res: Response) => {
+    async insertar(req: Request, res: Response) {
         const { nombre, descripcion, profesor } = req.body;
+        const errores: { nombre?: string, descripcion?: string, profesor?: string } = {};
+
+        // Validación simple
+        if (!nombre) {
+            errores.nombre = 'El nombre es obligatorio.';
+        }
+        if (!descripcion) {
+            errores.descripcion = 'La descripción es obligatoria.';
+        }
+        if (!profesor) {
+            errores.profesor = 'El profesor es obligatorio.';
+        }
+
+        if (Object.keys(errores).length > 0) {
+            return res.render('insertarCurso', { errores, nombre, descripcion, profesor });
+        }
+
         try {
-            const nuevoCurso = Curso.create({ nombre, descripcion, profesor });
+            const nuevoCurso = Curso.create({ nombre, descripcion, profesor: profesor || undefined });
             await nuevoCurso.save();
             res.redirect('/cursos/listar'); // Redirigir a la lista de cursos
         } catch (error) {
             console.error(error);
             res.status(500).json({ message: 'Error al crear curso' });
         }
-    },
+    }
 
-    listar: async (req: Request, res: Response) => {
+    async listar(req: Request, res: Response) {
         try {
             const cursos = await Curso.find();
             res.render('listarCursos', { cursos });
@@ -23,11 +41,9 @@ const cursosController = {
             console.error(error);
             res.status(500).json({ message: 'Error al obtener cursos' });
         }
-    },
+    }
 
-  
-
-    editar: async (req: Request, res: Response) => {
+    async editar(req: Request, res: Response) {
         const id = parseInt(req.params.id);
         try {
             const curso = await Curso.findOneBy({ id });
@@ -40,9 +56,9 @@ const cursosController = {
             console.error(error);
             res.status(500).json({ message: 'Error al obtener curso' });
         }
-    },
+    }
 
-    modificar: async (req: Request, res: Response) => {
+    async modificar(req: Request, res: Response) {
         const id = parseInt(req.params.id);
         const { nombre, descripcion, profesor } = req.body;
         try {
@@ -60,9 +76,9 @@ const cursosController = {
             console.error(error);
             res.status(500).json({ message: 'Error al actualizar curso' });
         }
-    },
+    }
 
-    eliminar: async (req: Request, res: Response) => {
+    async eliminar(req: Request, res: Response) {
         const id = parseInt(req.params.id);
         try {
             const curso = await Curso.findOneBy({ id });
@@ -77,6 +93,6 @@ const cursosController = {
             res.status(500).json({ message: 'Error al eliminar curso' });
         }
     }
-};
+}
 
-export default cursosController;
+export default new cursosController();

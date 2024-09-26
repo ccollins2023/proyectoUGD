@@ -8,7 +8,9 @@
 </head>
 <body>
     <h1>Editar Estudiante</h1>
-    <form action="/estudiantes/modificar/<%= estudiante.id %>?_method=PUT" method="POST">
+    <form action= "/estudiantes/modificar?_method=PUT"method="POST">
+        <input type="hidden" name="id" value="<%= estudiante.id %>">
+        
         <label for="dni">DNI:</label>
         <input type="text" id="dni" name="dni" value="<%= estudiante.dni %>" required>
         

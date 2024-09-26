@@ -1,9 +1,27 @@
 import { Router } from 'express';
 import { Profesor } from '../models/profesorModel';
-import ProfesorController from '../controllers/profesorController';
+import profesorController from '../controllers/profesorController';
 
 const router = Router();
+router.get('/insertar', (req, res) => {
+    res.render('insertarProfesor');
+});
 
+
+router.post('/insertar', profesorController.insertar);
+
+
+router.get('/listar', profesorController.listar);
+
+
+router.get('/editar/:id', profesorController.editar);
+
+
+router.put('/modificar', profesorController.modificar);
+
+
+router.get('/eliminar/:id', profesorController.borrar);
+/*
 // Obtener todos los profesores y renderizar la lista
 router.get('/listar', async (req, res) => {
     try {
@@ -15,21 +33,7 @@ router.get('/listar', async (req, res) => {
     }
 });
 
-// Obtener un profesor por ID y renderizar su vista de detalle
-router.get('/:id', async (req, res) => {
-    const id = parseInt(req.params.id);
-    try {
-        const profesor = await Profesor.findOneBy({ id });
-        if (profesor) {
-            res.render('detalleProfesor', { profesor });
-        } else {
-            res.status(404).json({ message: 'Profesor no encontrado' });
-        }
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Error al obtener profesor' });
-    }
-});
+
 
 // Renderizar el formulario de edición de profesor
 router.get('/editar/:id', async (req, res) => {
@@ -84,10 +88,11 @@ router.get('/eliminar/:id', async (req, res) => {
         res.status(500).json({ message: 'Error al eliminar profesor' });
     }
 });
+router.get('/insertar', (req, res) => {
+    res.render('insertarProfesor'); 
+});
 
 // Insertar un nuevo profesor
-router.post('/', async (req, res) => {
-    await ProfesorController.insertar(req, res);
-});
+router.post('/insertar', profesorController.insertar);*/
 
 export default router;

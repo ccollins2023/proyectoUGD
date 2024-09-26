@@ -1,17 +1,20 @@
 import express from 'express';
 import estudiantesController from '../controllers/estudiantesController';
-import methodOverride from 'method-override';
+
 
 const router = express.Router();
-router.use(methodOverride('_method'))
+
 // Crear un nuevo estudiante
+router.get('/insertar', (req, res) => {
+    res.render('insertarEstudiante'); 
+});
 router.post('/insertar', estudiantesController.insertar);
 
 // Eliminar un estudiante
-router.delete('/eliminar/:id', estudiantesController.eliminar);
+router.get('/eliminar/:id', estudiantesController.eliminar);
 
 // Modificar un estudiante
-router.put('/modificar/:id', estudiantesController.modificar);
+router.put('/modificar', estudiantesController.modificar);
 
 // Obtener un estudiante por ID para editar
 router.get('/editar/:id', estudiantesController.editar);
