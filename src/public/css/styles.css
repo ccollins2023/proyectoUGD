@@ -39,7 +39,7 @@ nav ul li {
 }
 
 nav a {
-    color: rgb(220, 243, 9);
+    color: rgb(243, 200, 9);
     text-decoration: none;
     font-size: 1.2em;
     font-weight: bold;
@@ -67,4 +67,45 @@ footer {
     position: fixed;
     width: 100%;
     bottom: 0;
+}
+
+
+/* Estilo general para la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: left;
+}
+
+/* Estilo para las celdas de la tabla */
+th, td {
+    padding: 12px;
+    border: 1px solid #dddddd; /* Borde gris claro */
+}
+
+/* Estilo para los encabezados de la tabla */
+th {
+    background-color: #4CAF50; /* Color de fondo verde para encabezados */
+    color: white; /* Color del texto en el encabezado */
+}
+
+/* Alternar colores de fondo de las filas */
+tr:nth-child(even) {
+    background-color: #f2f2f2; /* Color gris claro */
+}
+
+tr:nth-child(odd) {
+    background-color: #ffffff; /* Color blanco */
+}
+
+/* Estilo para enlaces */
+a {
+    color: #0f39f3; /* Color de los enlaces */
+    text-decoration: none; /* Sin subrayado */
+}
+
+a:hover {
+    text-decoration: underline; /* Subrayado al pasar el ratón */
 }

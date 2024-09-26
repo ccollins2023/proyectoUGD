@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Curso</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
     <h1>Editar Curso</h1>
-    <form action="/cursos/editar/<%= curso.id %>?_method=PUT" method="POST">
+    <form action="/editar/<%= curso.id %>?_method=PUT" method="POST">
         <label for="nombre">Nombre del Curso:</label>
         <input type="text" id="nombre" name="nombre" value="<%= curso.nombre %>" required>
         

@@ -28,12 +28,9 @@ class ProfesorController {
         }
     }
 
-         async insertar(req: Request, res: Response) {
+    async insertar(req: Request, res: Response) {
         const { dni, nombre, apellido, email, profesion, telefono } = req.body;
         const errores: { [key: string]: string } = {};
-
-
-
 
         // Validaciones
         if (!dni || !/^\d{8}$/.test(dni)) {
@@ -87,7 +84,7 @@ class ProfesorController {
                 return res.status(404).send("Profesor no encontrado");
             }
             await Profesor.delete({ id: Number(id) });
-            res.status(200).json({ mensaje: "Profesor eliminado exitosamente" });
+            res.redirect('/profesores'); // Redirigir después de eliminar
         } catch (err) {
             console.error(err);
             res.status(500).send("Error al eliminar el profesor");
@@ -140,8 +137,6 @@ class ProfesorController {
             res.status(500).send("Error al modificar el profesor");
         }
     }
-
-   
 }
 
 export default new ProfesorController();

@@ -21,13 +21,10 @@ router.get('/insertar', (req, res) => {
     res.render('insertarCurso');
 });
 
-
 // Mostrar formulario para editar un curso
 router.get('/editar/:id', cursosController.editar);
 
 // Actualizar un curso
 router.put('/editar/:id', cursosController.modificar);
-
-
 
 export default router;

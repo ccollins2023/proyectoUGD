@@ -2,19 +2,19 @@ import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import "reflect-metadata";
-import estudianteRouter from './routes/estudianteRouter';
-import profesorRouter from './routes/profesoresRouter';
-import cursoRouter from './routes/cursoRouter';
-import inscripcionRouter from './routes/inscripcionRouter';
+import estudianteRoutes from './routes/estudianteRoutes';
+import profesorRoutes from './routes/profesoresRoutes';
+import cursoRoutes from './routes/cursoRoutes';
+import inscripcionRoutes from './routes/inscripcionRoutes';
 import path from 'path';
 
 const app = express();
 
 // Configuración de EJS
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, '../src/views'));
-app.use(express.static(path.join(__dirname, 'public'))); // Servir archivos estáticos
-
+app.set('views', path.join(__dirname, '/views'));
+app.use(express.static(path.join(__dirname, '/public'))); // Servir archivos estáticos
+console.log(__dirname)
 // Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -23,13 +23,13 @@ app.use(morgan('dev'));
 
 // Rutas
 app.get('/', (req: Request, res: Response) => {
-    res.render('index'); // Cambia 'index' por el nombre de tu vista principal
+    res.render('index'); 
 });
 
-app.use('/estudiantes', estudianteRouter);
-app.use('/profesores', profesorRouter);
-app.use('/cursos', cursoRouter);
-app.use('/inscripciones', inscripcionRouter);
+app.use('/estudiantes', estudianteRoutes);
+app.use('/profesores', profesorRoutes);
+app.use('/cursos', cursoRoutes);
+app.use('/inscripciones', inscripcionRoutes);
 
 // Middleware para manejar rutas no encontradas
 app.use((req: Request, res: Response, next: NextFunction) => {

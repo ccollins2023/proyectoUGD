@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Profesores</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Lista de Profesores</h1>
+    </header>
+    <nav>
+        <ul>
+          
+            <li><a href="/estudiantes">Gestionar Estudiantes</a></li>
+            <li><a href="/profesores">Gestionar Profesores</a></li>
+            <li><a href="/cursos">Gestionar Cursos</a></li>
+            <li><a href="/inscripciones">Gestionar Inscripciones</a></li>
+        </ul>
+    </nav>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Email</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% profesores.forEach(function(profesor) { %>
+                    <tr>
+                        <td><%= profesor.id %></td>
+                        <td><%= profesor.nombre %></td>
+                        <td><%= profesor.apellido %></td>
+                        <td><%= profesor.email %></td>
+                        <td>
+                            <a href="/profesores/editar/<%= profesor.id %>">Editar</a>
+                            <a href="/profesores/eliminar/<%= profesor.id %>" onclick="return confirm('¿Estás seguro de que deseas eliminar este profesor?');">Eliminar</a>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </main>
+    <footer>
+        &copy; 2024 @collins
+    </footer>
+</body>
+</html>

@@ -7,7 +7,7 @@ const router = Router();
 router.post('/', async (req, res) => {  
   const { curso, estudianteId, nota } = req.body;  
   try {  
-    const nuevaInscripcion = Inscripcion.create(req.body);  
+    const nuevaInscripcion = await Inscripcion.create(req.body);  
     await Inscripcion.save(nuevaInscripcion);  
     res.status(201).json(nuevaInscripcion);  
   } catch (error) {  
@@ -16,8 +16,7 @@ router.post('/', async (req, res) => {
   }  
 });  
 
-
-// Obtener todas las inscripciones  
+// Obtener todas las inscripciones y renderizar la vista
 router.get('/', async (req, res) => {  
   try {  
     const inscripciones = await Inscripcion.find({  
@@ -26,13 +25,12 @@ router.get('/', async (req, res) => {
         estudiante: true,  
       },  
     });  
-    res.json(inscripciones);  
+    res.render('listarInscripciones', { inscripciones }); // Renderiza la vista listarInscripciones.ejs
   } catch (error) {  
     console.error(error);  
     res.status(500).json({ message: 'Error al obtener inscripciones' });  
   }  
 });  
-
 
 // Actualizar una inscripción  
 router.put('/:cursoId/:estudianteId', async (req, res) => {  
@@ -48,14 +46,13 @@ router.put('/:cursoId/:estudianteId', async (req, res) => {
       await inscripcion.save();  
       res.json(inscripcion);  
     } else {  
-      res.status(404).json({ message: 'Inscripcion no encontrada' });  
+      res.status(404).json({ message: 'Inscripción no encontrada' });  
     }  
   } catch (error) {  
     console.error(error);  
     res.status(500).json({ message: 'Error al actualizar inscripción' });  
   }  
 });  
-
 
 // Obtener una inscripción por ID de curso y estudiante  
 router.get('/:cursoId/:estudianteId', async (req, res) => {  
@@ -72,17 +69,13 @@ router.get('/:cursoId/:estudianteId', async (req, res) => {
     if (inscripcion) {  
       res.json(inscripcion);  
     } else {  
-      res.status(404).json({ message: 'Inscripcion no encontrada' });  
+      res.status(404).json({ message: 'Inscripción no encontrada' });  
     }  
   } catch (error) {  
     console.error(error);  
     res.status(500).json({ message: 'Error al obtener inscripción' });  
   }  
 });  
-
-
-
-
 
 // Eliminar una inscripción  
 router.delete('/:cursoId/:estudianteId', async (req, res) => {  
@@ -96,7 +89,7 @@ router.delete('/:cursoId/:estudianteId', async (req, res) => {
       await inscripcion.remove();  
       res.status(204).send();  
     } else {  
-      res.status(404).json({ message: 'Inscripcion no encontrada' });  
+      res.status(404).json({ message: 'Inscripción no encontrada' });  
     }  
   } catch (error) {  
     console.error(error);  
