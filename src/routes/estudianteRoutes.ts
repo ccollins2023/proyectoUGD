@@ -1,8 +1,9 @@
 import express from 'express';
 import estudiantesController from '../controllers/estudiantesController';
+import methodOverride from 'method-override';
 
 const router = express.Router();
-
+router.use(methodOverride('_method'))
 // Crear un nuevo estudiante
 router.post('/insertar', estudiantesController.insertar);
 
@@ -18,9 +19,6 @@ router.get('/editar/:id', estudiantesController.editar);
 // Obtener todos los estudiantes y renderizar la vista
 router.get('/listar', estudiantesController.listar);
 
-// Renderizar vista para insertar un nuevo estudiante
-router.get('/insertar', (req, res) => {
-    res.render('insertarEstudiante'); 
-});
+
 
 export default router;

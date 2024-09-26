@@ -79,12 +79,12 @@ class ProfesorController {
     async borrar(req: Request, res: Response) {
         const { id } = req.params;
         try {
-            const registro = await Profesor.findOneBy({ id: Number(id) });
+           const registro = await Profesor.findOneBy({ id: Number(id) });
             if (!registro) {
                 return res.status(404).send("Profesor no encontrado");
             }
             await Profesor.delete({ id: Number(id) });
-            res.redirect('/profesores'); // Redirigir después de eliminar
+            res.redirect('/profesores/listar'); // Redirigir después de eliminar
         } catch (err) {
             console.error(err);
             res.status(500).send("Error al eliminar el profesor");

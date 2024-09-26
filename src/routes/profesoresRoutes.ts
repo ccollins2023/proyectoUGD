@@ -5,7 +5,7 @@ import ProfesorController from '../controllers/profesorController';
 const router = Router();
 
 // Obtener todos los profesores y renderizar la lista
-router.get('/', async (req, res) => {
+router.get('/listar', async (req, res) => {
     try {
         const profesores = await Profesor.find();
         res.render('listarProfesores', { profesores });
@@ -66,31 +66,17 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-// Renderizar la vista de confirmación para eliminar profesor
+
+
+// Eliminar un profesor
 router.get('/eliminar/:id', async (req, res) => {
     const id = parseInt(req.params.id);
     try {
         const profesor = await Profesor.findOneBy({ id });
-        if (profesor) {
-            res.render('eliminarProfesor', { profesor });  
-        } else {
-            res.status(404).json({ message: 'Profesor no encontrado' });
-        }
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Error al obtener profesor' });
-    }
-});
-
-// Eliminar un profesor
-router.delete('/:id', async (req, res) => {
-    const id = parseInt(req.params.id);
-    try {
-        const profesor = await Profesor.findOneBy({ id });
-        if (profesor) {
+       if (profesor) {
             await profesor.remove(); // Asegúrate de que este método esté disponible
-            res.redirect('/profesores');  // Redirigir a la lista de profesores
-        } else {
+            res.redirect('/profesores/listar');  // Redirigir a la lista de profesores
+      } else {
             res.status(404).json({ message: 'Profesor no encontrado' });
         }
     } catch (error) {

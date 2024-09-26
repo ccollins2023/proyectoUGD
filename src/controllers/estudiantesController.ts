@@ -71,7 +71,7 @@ class EstudiantesController {
         if (!email || !/^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/.test(email)) {
             errores.email = 'Debe ser un correo electrónico válido.';
         }
-
+            console.log(errores+"lacon")
         if (Object.keys(errores).length > 0) {
             return res.render('insertarEstudiante', { errores, dni, nombre, apellido, email });
         }

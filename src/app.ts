@@ -7,8 +7,16 @@ import profesorRoutes from './routes/profesoresRoutes';
 import cursoRoutes from './routes/cursoRoutes';
 import inscripcionRoutes from './routes/inscripcionRoutes';
 import path from 'path';
+import methodOverride from 'method-override';
+
+
+// Middleware para permitir PUT y DELETE en formularios
+
+
 
 const app = express();
+
+app.use(methodOverride('_method'));
 
 // Configuración de EJS
 app.set('view engine', 'ejs');
