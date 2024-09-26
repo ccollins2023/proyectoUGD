@@ -1,31 +1,31 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Insertar Curso</title>
-    <link rel="stylesheet" href="/css/styles.css">
-</head>
-<body>
-    <h1>Insertar Nuevo Curso</h1>
-  
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Insertar Curso</title>
+        <link rel="stylesheet" href="/css/styles.css">
+    </head>
+    <body>
+        <h1>Insertar Nuevo Curso</h1>
     
-    <form action="/cursos/insertar" method="POST">
-        <label for="nombre">Nombre del Curso:</label>
-        <input type="text" id="nombre" name="nombre" required>
         
-        <label for="descripcion">Descripción:</label>
-        <textarea id="descripcion" name="descripcion" required></textarea>
-        
-        <label for="profesor">Profesor:</label>
-        <select id="profesor" name="profesor" required>
-            <!-- La lista de profesores es cargada dinámicamente desde el backend -->
-             <% profesores.forEach(profesor => { %>
-                <option value="<%= profesor.id %>"><%= profesor.nombre %></option>
-            <% }); %>
-        </select>
-        
-        <button type="submit">Guardar</button>
-    </form>
-</body>
-</html>
+        <form action="/cursos/insertar" method="POST">
+            <label for="nombre">Nombre del Curso:</label>
+            <input type="text" id="nombre" name="nombre" required>
+            
+            <label for="descripcion">Descripción:</label>
+            <textarea id="descripcion" name="descripcion" required></textarea>
+            
+            <label for="profesor">Profesor:</label>
+            <select id="profesor" name="profesor" required>
+                <!-- La lista de profesores es cargada dinámicamente desde el backend -->
+                <% profesores.forEach(profesor => { %>
+                    <option value="<%= profesor.id %>"><%= profesor.nombre %></option>
+                <% }); %>
+            </select>
+            
+            <button type="submit">Guardar</button>
+        </form>
+    </body>
+    </html>

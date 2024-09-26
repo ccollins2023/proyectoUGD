@@ -7,9 +7,8 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-
     <header>
-        <h1>Mi Universidad</h1>
+        <h1>Listado de Cursos</h1>
         <nav>
             <ul>
                 <li><a href="/estudiantes/listar">Gestionar Estudiantes</a></li>
@@ -19,43 +18,35 @@
             </ul>
         </nav>
     </header>
-
-    <main>
-        <h2>Listado de Cursos</h2>
-        <a href="/cursos/insertar">Agregar nuevo curso</a>
-        <table>
-            <thead>
+    
+    <a href="/cursos/insertar">Agregar nuevo curso</a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Profesor</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% cursos.forEach(curso => { %>
                 <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Descripción</th>
-                    <th>Profesor</th>
-                    <th>Acciones</th>
+                    <td><%= curso.id %></td>
+                    <td><%= curso.nombre %></td>
+                    <td><%= curso.descripcion %></td>
+                    <!-- Verificación condicional para evitar errores -->
+                    <td><%= curso.profesor ? curso.profesor.nombre : 'Sin Profesor Asignado' %></td>
+                    <td>
+                        <a href="/cursos/editar/<%= curso.id %>">Editar</a>
+                        <form action="/cursos/eliminar/<%= curso.id %>?_method=DELETE" method="POST" style="display:inline;" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este curso?');">
+                            <button type="submit">Eliminar</button>
+                        </form>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                <% cursos.forEach(curso => { %>
-                    <tr>
-                        <td><%= curso.id %></td>
-                        <td><%= curso.nombre %></td>
-                        <td><%= curso.descripcion %></td>
-                        <!-- Verificación condicional para evitar errores -->
-                        <td><%= curso.profesor ? curso.profesor.nombre : 'Sin Profesor Asignado' %></td>
-                        <td>
-                            <a href="/cursos/editar/<%= curso.id %>">Editar</a>
-                            <form action="/cursos/eliminar/<%= curso.id %>?_method=DELETE" method="POST" style="display:inline;" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este curso?');">
-                                <button type="submit">Eliminar</button>
-                            </form>
-                        </td>
-                    </tr>
-                <% }); %>
-            </tbody>
-        </table>
-    </main>
-
-    <footer>
-        <p>&copy; 2024 Mi Universidad. Todos los derechos reservados.</p>
-    </footer>
-
+            <% }); %>
+        </tbody>
+    </table>
 </body>
 </html>
