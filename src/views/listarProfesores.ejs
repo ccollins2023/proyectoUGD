@@ -25,6 +25,7 @@
             <thead>
                 <tr>
                     <th>ID</th>
+                    <th>DNI</th>
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Email</th>
@@ -35,6 +36,7 @@
                 <% profesores.forEach(function(profesor) { %>
                     <tr>
                         <td><%= profesor.id %></td>
+                        <td><%= profesor.dni %></td>
                         <td><%= profesor.nombre %></td>
                         <td><%= profesor.apellido %></td>
                         <td><%= profesor.email %></td>

@@ -31,6 +31,7 @@ class ProfesorController {
     async insertar(req: Request, res: Response) {
         const { dni, nombre, apellido, email, profesion, telefono } = req.body;
         const errores: { [key: string]: string } = {};
+        
 
         // Validaciones
         if (!dni || !/^\d{8}$/.test(dni)) {
@@ -69,7 +70,8 @@ class ProfesorController {
         try {
             const profesor = Profesor.create({ dni, nombre, apellido, email, profesion, telefono });
             await Profesor.save(profesor);
-          res.redirect('/profesores/listar')
+          
+          res.redirect('/profesores/listar');
            
         } catch (err) {
             console.error(err);

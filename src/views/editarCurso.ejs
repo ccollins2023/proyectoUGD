@@ -8,7 +8,8 @@
 </head>
 <body>
     <h1>Editar Curso</h1>
-    <form action="/editar/<%= curso.id %>?_method=PUT" method="POST">
+    <form action="/cursos/editar/<%= curso.id %>?_method=PUT" method="POST">
+
         <label for="nombre">Nombre del Curso:</label>
         <input type="text" id="nombre" name="nombre" value="<%= curso.nombre %>" required>
         

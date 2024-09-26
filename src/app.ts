@@ -10,12 +10,12 @@ import path from 'path';
 import methodOverride from 'method-override';
 
 
-// Middleware para permitir PUT y DELETE en formularios
+
 
 
 
 const app = express();
-
+// Middleware para permitir PUT y DELETE en formularios
 app.use(methodOverride('_method'));
 
 // Configuración de EJS

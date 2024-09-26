@@ -20,7 +20,7 @@
         <label for="profesor">Profesor:</label>
         <select id="profesor" name="profesor" required>
             <!-- La lista de profesores es cargada dinámicamente desde el backend -->
-            <% profesores.forEach(profesor => { %>
+             <% profesores.forEach(profesor => { %>
                 <option value="<%= profesor.id %>"><%= profesor.nombre %></option>
             <% }); %>
         </select>
