@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Inscripción - Universidad</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Universidad</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="/estudiantes/listar">Gestionar Estudiantes</a></li>
+            <li><a href="/profesores/listar">Gestionar Profesores</a></li>
+            <li><a href="/cursos/listar">Gestionar Cursos</a></li>
+            <li><a href="/inscripciones/listar">Gestionar Inscripciones</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section>
+            <h2>Editar Inscripción</h2>
+            <form action="/inscripciones/<%= inscripcion.curso_id %>/<%= inscripcion.estudiante_id %>?_method=PUT" method="POST">
+                <label for="nota">Nota:</label>
+                <input type="text" id="nota" name="nota" value="<%= inscripcion.nota %>" required>
+                <button type="submit">Actualizar Inscripción</button>
+            </form>
+            <a href="/inscripciones/listar">Volver a la lista</a>
+        </section>
+    </main>
+    <footer>
+        &copy; 2024 @collins
+    </footer>
+</body>
+</html>

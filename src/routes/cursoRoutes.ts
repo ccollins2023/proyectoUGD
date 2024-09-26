@@ -4,8 +4,9 @@ import methodOverride from 'method-override';
 import { Profesor } from '../models/profesorModel';  // Ajusta la ruta si es necesario
 
 const router = express.Router();
-
+const app = express();
 // Middleware para permitir el uso de métodos HTTP como PUT y DELETE
+app.use(methodOverride('_method'));
 router.use(methodOverride('_method'));
 
 // Mostrar formulario para insertar un nuevo curso
