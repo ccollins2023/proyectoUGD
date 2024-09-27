@@ -4,22 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insertar Estudiante</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Asegúrate de incluir tu archivo CSS principal -->
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
 </head>
 <body>
     <h1>Insertar Nuevo Estudiante</h1>
+
+    <% if (errores && Object.keys(errores).length > 0) { %>
+        <div class="error">
+            <h3>Errores:</h3>
+            <ul>
+                <% if (errores.dni) { %>
+                    <li><%= errores.dni %></li>
+                <% } %>
+                <% if (errores.nombre) { %>
+                    <li><%= errores.nombre %></li>
+                <% } %>
+                <% if (errores.apellido) { %>
+                    <li><%= errores.apellido %></li>
+                <% } %>
+                <% if (errores.email) { %>
+                    <li><%= errores.email %></li>
+                <% } %>
+            </ul>
+        </div>
+    <% } %>
+
     <form action="/estudiantes/insertar" method="POST">
         <label for="dni">DNI:</label>
-        <input type="text" id="dni" name="dni" required>
+        <input type="text" id="dni" name="dni" required value="<%= dni || '' %>">
         
         <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" required>
+        <input type="text" id="nombre" name="nombre" required value="<%= nombre || '' %>">
         
         <label for="apellido">Apellido:</label>
-        <input type="text" id="apellido" name="apellido" required>
+        <input type="text" id="apellido" name="apellido" required value="<%= apellido || '' %>">
         
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
+        <input type="email" id="email" name="email" required value="<%= email || '' %>">
         
         <button type="submit">Guardar</button>
     </form>
