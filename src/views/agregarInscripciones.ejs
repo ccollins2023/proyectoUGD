@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Inscripción</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <h1>Agregar Inscripción</h1>
+
+    <% if (errores && Object.keys(errores).length > 0) { %>
+        <div>
+            <h3>Errores:</h3>
+            <ul>
+                <% for (const campo in errores) { %>
+                    <li><%= errores[campo] %></li>
+                <% } %>
+            </ul>
+        </div>
+    <% } %>
+
+    <form action="/inscripciones/agregar" method="POST">
+        <div>
+            <label for="curso_id">Curso:</label>
+            <select id="curso_id" name="curso_id" required>
+                <option value="">Selecciona un curso</option>
+                <% cursos.forEach(curso => { %>
+                    <option value="<%= curso.id %>"><%= curso.nombre %></option>
+                <% }) %>
+            </select>
+        </div>
+        <div>
+            <label for="estudiante_id">Estudiante:</label>
+            <select id="estudiante_id" name="estudiante_id" required>
+                <option value="">Selecciona un estudiante</option>
+                <% estudiantes.forEach(estudiante => { %>
+                    <option value="<%= estudiante.id %>"><%= estudiante.nombre %></option>
+                <% }) %>
+            </select>
+        </div>
+        <div>
+            <label for="nota">Nota:</label>
+            <input type="number" id="nota" name="nota" min="1" max="10" required>
+        </div>
+        <button type="submit">Agregar Inscripción</button>
+    </form>
+</body>
+</html>

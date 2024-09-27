@@ -17,9 +17,9 @@
             <li><a href="/cursos/listar">Gestionar Cursos</a></li>
             <li><a href="/inscripciones/listar">Gestionar Inscripciones</a></li>
         </ul>
-        <a href="/profesores/insertar ">Agregar nuevo profesor</a>
+        
     </nav>
-
+    <a href="/profesores/insertar"class="btn">Agregar nuevo profesor</a>
     <main>
         <table>
             <thead>
@@ -29,6 +29,7 @@
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Email</th>
+                    <th>Teléfono</th> 
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -40,6 +41,7 @@
                         <td><%= profesor.nombre %></td>
                         <td><%= profesor.apellido %></td>
                         <td><%= profesor.email %></td>
+                        <td><%= profesor.telefono %></td> 
                         <td>
                             <a href="/profesores/editar/<%= profesor.id %>">Editar</a>
                             <a href="/profesores/eliminar/<%= profesor.id %>" onclick="return confirm('¿Estás seguro de que deseas eliminar este profesor?');">Eliminar</a>

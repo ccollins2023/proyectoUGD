@@ -2,34 +2,40 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Editar Inscripción - Universidad</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Inscripción</title>
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <header>
-        <h1>Universidad</h1>
-    </header>
-    <nav>
-        <ul>
-            <li><a href="/estudiantes/listar">Gestionar Estudiantes</a></li>
-            <li><a href="/profesores/listar">Gestionar Profesores</a></li>
-            <li><a href="/cursos/listar">Gestionar Cursos</a></li>
-            <li><a href="/inscripciones/listar">Gestionar Inscripciones</a></li>
-        </ul>
-    </nav>
-    <main>
-        <section>
-            <h2>Editar Inscripción</h2>
-            <form action="/inscripciones/<%= inscripcion.curso_id %>/<%= inscripcion.estudiante_id %>?_method=PUT" method="POST">
-                <label for="nota">Nota:</label>
-                <input type="text" id="nota" name="nota" value="<%= inscripcion.nota %>" required>
-                <button type="submit">Actualizar Inscripción</button>
-            </form>
-            <a href="/inscripciones/listar">Volver a la lista</a>
-        </section>
-    </main>
-    <footer>
-        &copy; 2024 @collins
-    </footer>
+    <h1>Editar Inscripción</h1>
+
+    <% if (errores) { %>
+        <div style="color: red;">
+            <h3>Errores:</h3>
+            <ul>
+                <% for (const campo in errores) { %>
+                    <li><%= errores[campo] %></li>
+                <% } %>
+            </ul>
+        </div>
+    <% } %>
+
+    <form action="/inscripciones/<%= inscripcion.curso_id %>/<%= inscripcion.estudiante_id %>?_method=PUT" method="POST">
+        <div>
+            <label for="nuevo_curso_id">ID del Nuevo Curso:</label>
+            <input type="number" id="nuevo_curso_id" name="nuevo_curso_id" value="<%= inscripcion.curso_id %>" required>
+        </div>
+        <div>
+            <label for="nuevo_estudiante_id">ID del Nuevo Estudiante:</label>
+            <input type="number" id="nuevo_estudiante_id" name="nuevo_estudiante_id" value="<%= inscripcion.estudiante_id %>" required>
+        </div>
+        <div>
+            <label for="nota">Nota:</label>
+            <input type="number" id="nota" name="nota" value="<%= inscripcion.nota %>" min="1" max="10" required>
+        </div>
+        <button type="submit">Modificar Inscripción</button>
+    </form>
+
+    <a href="/inscripciones/listar">Volver a la lista de inscripciones</a> <!-- Opción para volver a la lista -->
 </body>
 </html>

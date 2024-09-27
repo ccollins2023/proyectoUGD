@@ -15,18 +15,22 @@
                 <li><a href="/estudiantes/listar">Gestionar Estudiantes</a></li>
                 <li><a href="/profesores">Gestionar Profesores</a></li>
                 <li><a href="/cursos">Gestionar Cursos</a></li>
-                <li><a href="/inscripciones">Gestionar Inscripciones</a></li>
+                <li><a href="/inscripciones/listar">Gestionar Inscripciones</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
         <h1>Lista de Inscripciones</h1>
+        
+        <!-- Enlace para agregar una nueva inscripción -->
+        <a href="/inscripciones/agregar" class="btn">Agregar Inscripción</a>
+        
         <table>
             <thead>
                 <tr>
-                    <th>Curso</th>
-                    <th>Estudiante</th>
+                    <th>Curso </th>
+                    <th>Estudiante </th>
                     <th>Nota</th>
                     <th>Acciones</th>
                 </tr>
@@ -38,8 +42,11 @@
                         <td><%= inscripcion.estudiante.nombre %></td>
                         <td><%= inscripcion.nota %></td>
                         <td>
-                            <a href="/inscripciones/<%= inscripcion.cursoId %>/<%= inscripcion.estudianteId %>/editar">Editar</a>
-                            <form action="/inscripciones/<%= inscripcion.cursoId %>/<%= inscripcion.estudianteId %>?_method=DELETE" method="POST" style="display:inline;">
+                            <!-- Enlace para editar la inscripción -->
+                            <a href="/inscripciones/<%= inscripcion.curso_id %>/<%= inscripcion.estudiante_id %>/editar">Editar</a>
+                            
+                            <!-- Formulario para eliminar la inscripción -->
+                            <form action="/inscripciones/<%= inscripcion.curso_id %>/<%= inscripcion.estudiante_id %>?_method=DELETE" method="POST" style="display:inline;">
                                 <button type="submit">Eliminar</button>
                             </form>
                         </td>
